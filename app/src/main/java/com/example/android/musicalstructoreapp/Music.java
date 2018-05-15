@@ -7,12 +7,14 @@ public class Music {
     private String mAlbum;
     private String mArtist;
     private int mAlbumImageResourceId;
+    private int mArtistImageResourceId;
 
-    public Music(String title, String album, String artist, int AlbumImageResourceId, int ArtistResourceId) {
+    public Music(String title, String album, String artist, int AlbumImageResourceId, int ArtistImageResourceId) {
         mTitle = title;
         mAlbum = album;
         mArtist = artist;
         mAlbumImageResourceId = AlbumImageResourceId;
+        mArtistImageResourceId = ArtistImageResourceId;
     }
 
     public String getTitle() {
@@ -28,8 +30,12 @@ public class Music {
     }
 
 
-    public int getAlbumImageResourceId() {
+    public int getImageAlbum() {
         return mAlbumImageResourceId;
+    }
+
+    public int getImageArtist() {
+        return mArtistImageResourceId;
     }
 
 }

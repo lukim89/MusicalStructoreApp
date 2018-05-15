@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         MusicAdapter adapter =
-                new MusicAdapter(this, musicBaseList);
+                new MusicAdapter(this,0, musicBaseList);
 
         ListView listView = (ListView) findViewById(R.id.list);
 

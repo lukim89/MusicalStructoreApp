@@ -1,8 +1,6 @@
 package com.example.android.musicalstructoreapp;
 
 import android.app.Activity;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +8,16 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 
 public class MusicAdapter extends ArrayAdapter<Music> {
 
-    public MusicAdapter(Activity context, ArrayList<Music> music) {
+    private int mViewType;
+
+    public MusicAdapter(Activity context,int viewType, ArrayList<Music> music) {
         super(context, 0, music);
+        mViewType = viewType;
     }
 
     @Override
@@ -31,18 +30,45 @@ public class MusicAdapter extends ArrayAdapter<Music> {
 
         Music currentMusic = getItem(position);
 
-        TextView titleTextView = (TextView) listItemView.findViewById(R.id.title_text_view);
-        titleTextView.setText(currentMusic.getTitle());
+        TextView oneTextView = (TextView) listItemView.findViewById(R.id.one_text_view);
+        oneTextView.setTextSize(34);
 
-        TextView albumTextView = (TextView) listItemView.findViewById(R.id.album_text_view);
-        albumTextView.setText(currentMusic.getAlbum());
-
-        TextView artistTextView = (TextView) listItemView.findViewById(R.id.artist_text_view);
-        artistTextView.setText(currentMusic.getArtist());
-
+        TextView twoTextView = (TextView) listItemView.findViewById(R.id.two_text_view);
+        TextView threeTextView = (TextView) listItemView.findViewById(R.id.three_text_view);
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
-        imageView.setImageResource(currentMusic.getAlbumImageResourceId());
-        imageView.setVisibility(View.VISIBLE);
+
+
+        switch (mViewType) {
+            case 0:
+
+                oneTextView.setText(currentMusic.getTitle());
+                twoTextView.setText(currentMusic.getAlbum());
+                threeTextView.setText(currentMusic.getArtist());
+
+                imageView.setImageResource(currentMusic.getImageAlbum());
+                imageView.setVisibility(View.VISIBLE);
+                break;
+
+            case 1:
+
+                oneTextView.setText(currentMusic.getAlbum());
+                twoTextView.setText(currentMusic.getTitle());
+                threeTextView.setText(currentMusic.getArtist());
+
+                imageView.setImageResource(currentMusic.getImageAlbum());
+                imageView.setVisibility(View.VISIBLE);
+                break;
+
+            case 2:
+
+                oneTextView.setText(currentMusic.getArtist());
+                twoTextView.setText(currentMusic.getAlbum());
+                threeTextView.setText(currentMusic.getTitle());
+
+                imageView.setImageResource(currentMusic.getImageArtist());
+                imageView.setVisibility(View.VISIBLE);
+                break;
+        }
 
         return listItemView;
     }

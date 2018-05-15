@@ -39,7 +39,7 @@ public class ArtistActivity extends AppCompatActivity {
         });
 
         MusicAdapter adapter =
-                new MusicAdapter(this, musicBaseList);
+                new MusicAdapter(this,2, musicBaseList);
 
         ListView listView = (ListView) findViewById(R.id.list);
 
