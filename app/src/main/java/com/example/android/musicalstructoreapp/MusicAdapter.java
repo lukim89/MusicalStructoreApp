@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -38,6 +39,10 @@ public class MusicAdapter extends ArrayAdapter<Music> {
 
         TextView artistTextView = (TextView) listItemView.findViewById(R.id.artist_text_view);
         artistTextView.setText(currentMusic.getArtist());
+
+        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
+        imageView.setImageResource(currentMusic.getAlbumImageResourceId());
+        imageView.setVisibility(View.VISIBLE);
 
         return listItemView;
     }

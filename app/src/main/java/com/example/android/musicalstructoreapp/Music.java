@@ -6,13 +6,13 @@ public class Music {
     private String mTitle;
     private String mAlbum;
     private String mArtist;
-//    private int mCoverImageResourceId;
+    private int mAlbumImageResourceId;
 
-    public Music(String title, String album, String artist) {
+    public Music(String title, String album, String artist, int AlbumImageResourceId, int ArtistResourceId) {
         mTitle = title;
         mAlbum = album;
         mArtist = artist;
-//                mCover = cover;
+        mAlbumImageResourceId = AlbumImageResourceId;
     }
 
     public String getTitle() {
@@ -27,6 +27,9 @@ public class Music {
         return mArtist;
     }
 
-//    public int getImage() {
-//    return mCoverImageResourceId;
+
+    public int getAlbumImageResourceId() {
+        return mAlbumImageResourceId;
+    }
+
 }

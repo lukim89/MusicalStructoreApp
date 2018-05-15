@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -51,5 +52,16 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        MusicBase musicBase = new MusicBase();
+        ArrayList<Music> musicBaseList = musicBase.musicBase();
+
+
+        MusicAdapter adapter =
+                new MusicAdapter(this, musicBaseList);
+
+        ListView listView = (ListView) findViewById(R.id.list);
+
+        listView.setAdapter(adapter);
     }
 }
