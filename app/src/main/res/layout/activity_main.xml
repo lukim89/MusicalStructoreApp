@@ -36,16 +36,63 @@
             android:gravity="center"
             android:text="Artist" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="left">
 
+        <ImageView
+            android:id="@+id/now_play"
+            android:layout_width="200dp"
+            android:layout_height="200dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/now_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:textAllCaps="true"
+                android:textSize="38dp" />
+
+            <TextView
+                android:id="@+id/now_album"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Album"
+                android:textAllCaps="true"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/now_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Artist"
+                android:textAllCaps="true" />
+
+            <ImageView
+                android:id="@+id/now_artist_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="40dp" />
+
+        </LinearLayout>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <Button
+            android:id="@+id/previous"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Prev" />
+            android:text="previus" />
 
         <Button
             android:layout_width="match_parent"
@@ -54,6 +101,7 @@
             android:text="Play/Pause" />
 
         <Button
+            android:id="@+id/next"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
