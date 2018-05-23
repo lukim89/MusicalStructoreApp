@@ -4,7 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +19,7 @@ public class ArtistActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.music_list);
+        setContentView(R.layout.activity_artist);
 
         mGoMain = (Button) findViewById(R.id.go_main);
 
@@ -28,21 +30,16 @@ public class ArtistActivity extends AppCompatActivity {
             }
         });
 
-        MusicBase musicBase = new MusicBase();
-        ArrayList<Music> musicBaseList = musicBase.musicBase();
+        Bundle bundle = getIntent().getExtras();
 
-        Collections.sort(musicBaseList, new Comparator<Music>() {
-            @Override
-            public int compare(Music music1, Music music2) {
-                return music1.getArtist().compareTo(music2.getArtist());
-            }
-        });
+        int artistImage = bundle.getInt("artistImage");
+        String artistName = bundle.getString("artistName", "Artist");
 
-        MusicAdapter adapter =
-                new MusicAdapter(this,2, musicBaseList);
+        ImageView imageView = (ImageView) findViewById(R.id.artist_image);
+        imageView.setImageResource(artistImage);
 
-        ListView listView = (ListView) findViewById(R.id.list);
-
-        listView.setAdapter(adapter);
+        TextView textView = (TextView) findViewById(R.id.artist_name);
+        textView.setTextSize(34);
+        textView.setText(artistName);
     }
 }

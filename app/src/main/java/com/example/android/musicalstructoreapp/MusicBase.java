@@ -42,7 +42,6 @@ public class MusicBase extends AppCompatActivity {
         musicArrayList.add(new Music("tytul10", "album8", "artist5",R.drawable.album_8, R.drawable.artist_5));
         musicArrayList.add(new Music("tytul1", "album8", "artist5",R.drawable.album_8, R.drawable.artist_5));
         musicArrayList.add(new Music("tytul2", "album8", "artist5",R.drawable.album_8, R.drawable.artist_5));
-
         return (musicArrayList);
     }
 }

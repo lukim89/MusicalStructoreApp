@@ -17,7 +17,7 @@ public class AlbumActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.music_list);
+        setContentView(R.layout.activity_album);
 
         mGoMain = (Button) findViewById(R.id.go_main);
 
@@ -27,23 +27,6 @@ public class AlbumActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        MusicBase musicBase = new MusicBase();
-        ArrayList<Music> musicBaseList = musicBase.musicBase();
-
-        Collections.sort(musicBaseList, new Comparator<Music>() {
-            @Override
-            public int compare(Music music1, Music music2) {
-                return music1.getAlbum().compareTo(music2.getAlbum());
-            }
-        });
-
-        MusicAdapter adapter =
-                new MusicAdapter(this,1, musicBaseList);
-
-        ListView listView = (ListView) findViewById(R.id.list);
-
-        listView.setAdapter(adapter);
 
     }
 }
