@@ -33,10 +33,10 @@ public class MusicAdapter extends ArrayAdapter<Music> {
 
         Music currentMusic = getItem(position);
 
-        TextView oneTextView = (TextView) listItemView.findViewById(R.id.one_text_view);
-        TextView twoTextView = (TextView) listItemView.findViewById(R.id.two_text_view);
-        TextView threeTextView = (TextView) listItemView.findViewById(R.id.three_text_view);
-        ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
+        TextView oneTextView = listItemView.findViewById(R.id.one_text_view);
+        TextView twoTextView = listItemView.findViewById(R.id.two_text_view);
+        TextView threeTextView = listItemView.findViewById(R.id.three_text_view);
+        ImageView imageView = listItemView.findViewById(R.id.image);
 
         View list = listItemView.findViewById(R.id.list);
         int color = ContextCompat.getColor(getContext(), mColorResourceId);
