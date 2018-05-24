@@ -15,12 +15,10 @@ import java.util.ArrayList;
 public class MusicAdapter extends ArrayAdapter<Music> {
 
     private int mViewType;
-    private int mColorResourceId;
 
-    public MusicAdapter(Activity context, int viewType, ArrayList<Music> music, int colorResourceId) {
+    public MusicAdapter(Activity context, int viewType, ArrayList<Music> music) {
         super(context, 0, music);
         mViewType = viewType;
-        mColorResourceId = colorResourceId;
     }
 
     @Override
@@ -38,9 +36,6 @@ public class MusicAdapter extends ArrayAdapter<Music> {
         TextView threeTextView = listItemView.findViewById(R.id.three_text_view);
         ImageView imageView = listItemView.findViewById(R.id.image);
 
-        View list = listItemView.findViewById(R.id.list);
-        int color = ContextCompat.getColor(getContext(), mColorResourceId);
-
         switch (mViewType) {
             case 0:
                 oneTextView.setTextSize(34);
@@ -48,7 +43,6 @@ public class MusicAdapter extends ArrayAdapter<Music> {
                 twoTextView.setText(currentMusic.getAlbum());
                 threeTextView.setText(currentMusic.getArtist());
                 imageView.setImageResource(currentMusic.getImageAlbum());
-                list.setBackgroundColor(color);
                 break;
 
             case 1:
@@ -57,7 +51,6 @@ public class MusicAdapter extends ArrayAdapter<Music> {
                 twoTextView.setText(currentMusic.getTitle());
                 threeTextView.setText(currentMusic.getArtist());
                 imageView.setImageResource(currentMusic.getImageAlbum());
-                list.setBackgroundColor(color);
                 break;
 
             case 2:
@@ -66,7 +59,6 @@ public class MusicAdapter extends ArrayAdapter<Music> {
                 twoTextView.setText(currentMusic.getTitle());
                 threeTextView.setText(currentMusic.getAlbum());
                 imageView.setImageResource(currentMusic.getImageArtist());
-                list.setBackgroundColor(color);
                 break;
         }
 

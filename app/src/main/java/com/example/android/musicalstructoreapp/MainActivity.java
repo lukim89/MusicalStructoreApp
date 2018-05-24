@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,27 +19,27 @@ import java.util.Comparator;
 public class MainActivity extends AppCompatActivity {
 
     int playPosition;
-    boolean visibility = false;
-    boolean isPlay = false;
-    boolean playlistActive = false;
+    boolean nowPlayingVisibility = false;
+    boolean isPlaying = false;
+    boolean playlistActive = true;
     Music nowSong;
     MusicBase musicBase = new MusicBase();
-    ArrayList<Music> musicBaseList = musicBase.musicBase();
-    ArrayList<Music> playList = null;
+    ArrayList<Music> musicListBase = musicBase.musicBase();
+    ArrayList<Music> playListBase = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout now = findViewById(R.id.now_play);
-        now.setVisibility(View.GONE);
+        LinearLayout nowPlaying = findViewById(R.id.now_playing);
+        nowPlaying.setVisibility(View.GONE);
 
         TextView title = findViewById(R.id.title);
         title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Collections.sort(musicBaseList, new Comparator<Music>() {
+                Collections.sort(musicListBase, new Comparator<Music>() {
                     public int compare(Music music1, Music music2) {
                         return music1.getTitle().compareTo(music2.getTitle());
                     }
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         album.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Collections.sort(musicBaseList, new Comparator<Music>() {
+                Collections.sort(musicListBase, new Comparator<Music>() {
                     public int compare(Music music1, Music music2) {
                         return music1.getAlbum().compareTo(music2.getAlbum());
                     }
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         artist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Collections.sort(musicBaseList, new Comparator<Music>() {
+                Collections.sort(musicListBase, new Comparator<Music>() {
                     public int compare(Music music1, Music music2) {
                         return music1.getArtist().compareTo(music2.getArtist());
                     }
@@ -118,13 +119,13 @@ public class MainActivity extends AppCompatActivity {
         now_title.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                LinearLayout nowPlay = findViewById(R.id.now_play);
-                if (visibility) {
-                    nowPlay.setVisibility(View.GONE);
+                LinearLayout nowPlaying = findViewById(R.id.now_playing);
+                if (nowPlayingVisibility) {
+                    nowPlaying.setVisibility(View.GONE);
                 } else {
-                    nowPlay.setVisibility(View.VISIBLE);
+                    nowPlaying.setVisibility(View.VISIBLE);
                 }
-                visibility = !visibility;
+                nowPlayingVisibility = !nowPlayingVisibility;
             }
         });
 
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (playlistActive == false) {
+                if (!(playlistActive)) {
                     addToPlaylist(position);
                 } else {
                     setPlayPosition(position);
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (!(playlistActive == false)) {
+                if (playlistActive) {
                     removeFromPlaylist(position);
                     refreshPlaylist();
                 }
@@ -157,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         next.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (playPosition + 1 < playList.size()) {
+                if (playPosition + 1 < playListBase.size()) {
                     playPosition++;
                     setPlayPosition(playPosition);
                 }
@@ -181,44 +182,38 @@ public class MainActivity extends AppCompatActivity {
         playPause.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isPlay) {
+                if (isPlaying) {
                     playPause.setImageResource(R.drawable.ic_pause_circle_filled_black_24dp);
                 } else {
                     playPause.setImageResource(R.drawable.ic_play_circle_outline_black_24dp);
                 }
-                isPlay = !isPlay;
+                isPlaying = !isPlaying;
             }
         });
 
-
-        playList = new ArrayList<>();
-        playList.add(musicBaseList.get(1));
-        refresh(0, R.color.colorSecondary);
+        playListBase = new ArrayList<>();
+        playListBase.add(musicListBase.get(1));
+        refreshPlaylist();
         setPlayPosition(playPosition);
     }
 
-
-    /**
-     * This method is setting selected item to "now play".
-     */
-
     public void setPlayPosition(int position) {
         TextView nowTitle = findViewById(R.id.now_title);
-        nowTitle.setText(playList.get(position).getTitle());
+        nowTitle.setText(playListBase.get(position).getTitle());
 
         TextView nowAlbum = findViewById(R.id.now_album);
-        nowAlbum.setText(playList.get(position).getAlbum());
+        nowAlbum.setText(playListBase.get(position).getAlbum());
 
         TextView nowArtist = findViewById(R.id.now_artist);
-        nowArtist.setText(playList.get(position).getArtist());
+        nowArtist.setText(playListBase.get(position).getArtist());
 
         ImageView imageView = findViewById(R.id.now_album_image);
-        imageView.setImageResource(playList.get(position).getImageAlbum());
+        imageView.setImageResource(playListBase.get(position).getImageAlbum());
 
         ImageView nowArtistImage = findViewById(R.id.now_artist_image);
-        nowArtistImage.setImageResource(playList.get(position).getImageArtist());
+        nowArtistImage.setImageResource(playListBase.get(position).getImageArtist());
 
-        nowSong = playList.get(position);
+        nowSong = playListBase.get(position);
 
         playPosition = position;
         imageView.setVisibility(View.VISIBLE);
@@ -229,31 +224,32 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param viewType 0 - sort by title, 1 - sort by album, 2 - sort by artist.
      */
-
     public void refresh(int viewType, int backgroundColor) {
         ListView listView = findViewById(R.id.list);
+        listView.setBackgroundColor(getResources().getColor(backgroundColor));
         MusicAdapter adapter =
-                new MusicAdapter(this, viewType, musicBaseList, backgroundColor);
+                new MusicAdapter(this, viewType, musicListBase);
         listView.setAdapter(adapter);
     }
 
     public void refreshPlaylist() {
         ListView listView = findViewById(R.id.list);
+        listView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
         MusicAdapter adapter =
-                new MusicAdapter(this, 0, playList, R.color.colorPrimaryLight);
+                new MusicAdapter(this, 0, playListBase);
         listView.setAdapter(adapter);
     }
 
     public void addToPlaylist(int position) {
-        playList.add(musicBaseList.get(position));
+        playListBase.add(musicListBase.get(position));
+        Toast.makeText(this, "Song " + musicListBase.get(position).getTitle() + " added to the playlist.", Toast.LENGTH_SHORT).show();
     }
 
     public void removeFromPlaylist(int position) {
-        if (!(playList.size() == 0)) {
-            playList.remove(playList.get(position));
+        if (!(playListBase.size() == 0)) {
+            Toast.makeText(this, "Song " + playListBase.get(position).getTitle() + " removed from playlist.", Toast.LENGTH_SHORT).show();
+            playListBase.remove(playListBase.get(position));
             refreshPlaylist();
         }
     }
-
-
 }

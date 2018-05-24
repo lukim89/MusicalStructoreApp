@@ -5,24 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 public class AlbumActivity extends AppCompatActivity {
-
-    private Button mGoMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_album);
+        setContentView(R.layout.activity_information);
 
-        mGoMain = (Button) findViewById(R.id.go_main);
-
+        Button mGoMain = findViewById(R.id.go_main);
         mGoMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,10 +27,10 @@ public class AlbumActivity extends AppCompatActivity {
         int albumImage = bundle.getInt("albumImage");
         String albumName = bundle.getString("albumName", "Album");
 
-        ImageView imageView = (ImageView) findViewById(R.id.album_image);
+        ImageView imageView = findViewById(R.id.image);
         imageView.setImageResource(albumImage);
 
-        TextView textView = (TextView) findViewById(R.id.album_name);
+        TextView textView = findViewById(R.id.name);
         textView.setTextSize(34);
         textView.setText(albumName);
     }
