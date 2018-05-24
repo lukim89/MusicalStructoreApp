@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -10,7 +11,6 @@
         android:id="@+id/now_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryLight"
         android:gravity="center"
         android:singleLine="true"
         android:textAllCaps="true"
@@ -20,14 +20,13 @@
         android:id="@+id/now_playing"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/colorPrimaryLight"
         android:paddingLeft="6dp"
         android:paddingRight="6dp">
 
         <ImageView
             android:id="@+id/now_album_image"
             android:layout_width="200dp"
-            android:layout_height="200dp" />
+            android:layout_height="match_parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,87 +54,59 @@
                 android:id="@+id/now_artist_image"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_gravity="center"
-                android:layout_weight="2" />
-
+                android:layout_weight="2"
+                android:gravity="center" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/colorPrimaryLight">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/previous"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            style="@style/ButtonLayout" />
 
         <ImageView
             android:id="@+id/play_pause"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            style="@style/ButtonLayout" />
 
         <ImageView
             android:id="@+id/next"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
+            style="@style/ButtonLayout" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/playlist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/colorPrimaryLight"
-            android:gravity="center"
-            android:text="Playlist" />
+            style="@style/ButtonLayout"
+            android:text="@string/playlist" />
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="@style/ButtonLayout"
             android:background="@color/colorSecondary"
-            android:gravity="center"
-            android:text="Title" />
+            android:text="@string/title" />
 
         <TextView
             android:id="@+id/album"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="@style/ButtonLayout"
             android:background="@color/colorSecondaryDark"
-            android:gravity="center"
-            android:text="Album" />
+            android:text="@string/album" />
 
         <TextView
             android:id="@+id/artist"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="@style/ButtonLayout"
             android:background="@color/colorSecondaryLight"
-            android:gravity="center"
-            android:text="Artist" />
+            android:text="@string/artist" />
     </LinearLayout>
-
 
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryLight"
-        android:orientation="vertical">
-
-
-    </ListView>
-
+        android:orientation="vertical" />
 </LinearLayout>

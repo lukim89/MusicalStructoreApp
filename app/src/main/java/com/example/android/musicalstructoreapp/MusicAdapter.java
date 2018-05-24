@@ -1,7 +1,6 @@
 package com.example.android.musicalstructoreapp;
 
 import android.app.Activity;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +60,6 @@ public class MusicAdapter extends ArrayAdapter<Music> {
                 imageView.setImageResource(currentMusic.getImageArtist());
                 break;
         }
-
         return listItemView;
     }
 }

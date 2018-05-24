@@ -109,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 extras.putString("artistName", nowSong.getArtist());
                 extras.putInt("artistImage", nowSong.getImageArtist());
                 artistIntent.putExtras(extras);
-
                 startActivity(artistIntent);
             }
         });
@@ -220,8 +219,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method refreshing listView depending for sorting type.
-     *
      * @param viewType 0 - sort by title, 1 - sort by album, 2 - sort by artist.
      */
     public void refresh(int viewType, int backgroundColor) {

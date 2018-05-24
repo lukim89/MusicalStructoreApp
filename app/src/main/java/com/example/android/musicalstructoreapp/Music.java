@@ -29,7 +29,6 @@ public class Music {
         return mArtist;
     }
 
-
     public int getImageAlbum() {
         return mAlbumImageResourceId;
     }
@@ -37,5 +36,4 @@ public class Music {
     public int getImageArtist() {
         return mArtistImageResourceId;
     }
-
 }

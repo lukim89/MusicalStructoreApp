@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MusicalStructoreApp</string>
+    <string name="playlist">playlist</string>
+    <string name="title">title</string>
+    <string name="album">album</string>
+    <string name="artist">artist</string>
+    <string name="back">back</string>
+    <string name="information">Information available soon.</string>
 </resources>
