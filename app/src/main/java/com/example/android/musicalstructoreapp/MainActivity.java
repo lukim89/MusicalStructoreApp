@@ -15,6 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     boolean playlistActive = true;
     Music nowSong;
     MusicBase musicBase = new MusicBase();
-    ArrayList<Music> musicListBase = musicBase.musicBase();
-    ArrayList<Music> playListBase = null;
+    List<Music> musicListBase = new ArrayList<>(musicBase.musicBase());
+    List<Music> playListBase = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -225,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.list);
         listView.setBackgroundColor(getResources().getColor(backgroundColor));
         MusicAdapter adapter =
-                new MusicAdapter(this, viewType, musicListBase);
+                new MusicAdapter(this, viewType, (ArrayList<Music>) musicListBase);
         listView.setAdapter(adapter);
     }
 
@@ -233,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.list);
         listView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
         MusicAdapter adapter =
-                new MusicAdapter(this, 0, playListBase);
+                new MusicAdapter(this, 0, (ArrayList<Music>) playListBase);
         listView.setAdapter(adapter);
     }
 
